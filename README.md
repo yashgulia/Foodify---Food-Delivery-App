@@ -9,6 +9,10 @@ Steps:
    . Contact
    . Instamart
    . Search
-   . Sign In/Sign Out Switch
    . Cart
-   . Online / Offline Status 4. Setup Routing
+   . Sign In/Sign Out Switch
+   . Online / Offline Status
+4. Setup Routing
+5. Online Status Functionality(Custom Hook)
+6. Sign In/Sign Out Button(Conditional Rendering)
+7. Footer
