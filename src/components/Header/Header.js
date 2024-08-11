@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import foodify from "../../img/foodify.png";
 import useOnline from "../../utils/Hooks/useOnline";
+import { useState } from "react";
 
 const Logo = () => (
   <a href="/">
@@ -10,6 +11,8 @@ const Logo = () => (
 
 const Header = () => {
   const isOnline = useOnline();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <div className="flex justify-evenly items-center sticky shadow-lg">
@@ -37,7 +40,18 @@ const Header = () => {
         </ul>
       </div>
       <div className="flex">
-        <h4 className="px-10 text-lg">Sign In</h4>
+        {isLoggedIn ? (
+          <button
+            onClick={() => setIsLoggedIn(false)}
+            className="px-10 text-lg"
+          >
+            Sign Out
+          </button>
+        ) : (
+          <button onClick={() => setIsLoggedIn(true)} className="px-10 text-lg">
+            Sign In
+          </button>
+        )}
         <h4 className="px-4">{isOnline ? "🟢" : "🔴"}</h4>
       </div>
     </div>
