@@ -11,4 +11,4 @@ Steps:
    . Search
    . Sign In/Sign Out Switch
    . Cart
-   . Online / Offline Status
+   . Online / Offline Status 4. Setup Routing
