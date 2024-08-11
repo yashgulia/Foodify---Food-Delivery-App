@@ -1,5 +1,11 @@
+import Header from "./components/Header/Header";
+
 function App() {
-  return <div className="text-3xl font-bold">Foodify</div>;
+  return (
+    <div className="">
+      <Header />
+    </div>
+  );
 }
 
 export default App;
