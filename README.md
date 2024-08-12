@@ -17,3 +17,4 @@ Steps:
 6. Sign In/Sign Out Button(Conditional Rendering)
 7. Footer
 8. Restaurant Card
+9. Restaurant List

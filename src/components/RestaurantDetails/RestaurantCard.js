@@ -1,18 +1,32 @@
-const RestaurantCard = () => {
+import { IMG_CDN_URL } from "../../config";
+
+const RestaurantCard = ({
+  name,
+  avgRating,
+  cuisines,
+  cloudinaryImageId,
+  areaName,
+}) => {
   return (
     <div className="grid grid-flow-row gap-3">
       <div className="grid-rows-7">
         <img
           className="w-60 h-40 object-cover rounded-2xl"
-          src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2024/8/5/3ad62044-80e3-4134-b356-824bc8d33e40_800675.JPG"
-          alt="Bakingo"
+          src={IMG_CDN_URL + cloudinaryImageId}
+          alt={name}
         />
       </div>
       <div className="ml-3 grid-rows-5">
-        <h3 className="font-bold text-lg">Bakingo</h3>
-        <h4>⭐️ 4.6</h4>
-        <h5>Bakery, Desserts, Beverages</h5>
-        <h5>Near Shree Bikaner Sweets</h5>
+        <h3 className="font-bold text-lg">
+          {name.length > 20 ? name.substr(0, 20) + "..." : name}
+        </h3>
+        <h4>⭐️ {avgRating}</h4>
+        <h5>
+          {cuisines.join(", ").length > 28
+            ? cuisines.join(", ").substr(0, 29) + "..."
+            : cuisines.join(", ")}
+        </h5>
+        <h5>{areaName}</h5>
       </div>
     </div>
   );
