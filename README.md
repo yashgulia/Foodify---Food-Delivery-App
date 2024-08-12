@@ -18,3 +18,6 @@ Steps:
 7. Footer
 8. Restaurant Card
 9. Restaurant List
+10. Restaurant Data Fetching from Swiggy API
+    Swigggy restaurant list api - https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65200&lng=77.16630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
+    swiggy menu api - URL: https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.65200&lng=77.16630&restaurantId=655882&catalog_qa=undefined&submitAction=ENTER
