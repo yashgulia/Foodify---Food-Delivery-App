@@ -16,3 +16,4 @@ Steps:
 5. Online Status Functionality(Custom Hook)
 6. Sign In/Sign Out Button(Conditional Rendering)
 7. Footer
+8. Restaurant Card
