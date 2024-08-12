@@ -1,34 +1,58 @@
-import React, { useEffect, useState } from "react";
 import RestaurantCard from "../RestaurantDetails/RestaurantCard";
-import { restaurantList } from "../../config";
+import useRestaurant from "../../utils/Hooks/useRestaurant";
 
 const Body = () => {
-  const [restaurants, setRestaurants] = useState([]);
+  const restaurants = useRestaurant();
 
-  useEffect(() => {
-    getRestaurant();
-  }, []);
-
-  async function getRestaurant() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5128216&lng=76.9740996&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    console.log(json);
-    setRestaurants(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-  }
-
-  console.log(restaurantList);
   return (
-    <div className="mx-40">
-      <div className="grid grid-cols-4 gap-8 my-8 mx-4">
-        {restaurants.map((restaurant) => {
-          return <RestaurantCard {...restaurant?.info} />;
-        })}
+    <>
+      <div className="mx-44">
+        <div>
+          <h2 className="text-2xl my-4 font-bold">
+            Restaurants with online food delivery in Gurgaon
+          </h2>
+        </div>
+        <div className="flex items-center h-11 w-[1048px]">
+          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+            Filter
+          </div>
+          <div className="border rounded-2xl w-auto h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+            Sort By
+          </div>
+          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+            Fast Delivery
+          </div>
+          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+            New on Foodify
+          </div>
+          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+            Ratings 4.0+
+          </div>
+          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+            Pure Veg
+          </div>
+          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+            Offers
+          </div>
+          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+            Rs. 300-Rs. 600
+          </div>
+          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+            Less than Rs. 300
+          </div>
+        </div>
+        <div className="grid grid-cols-4 gap-8 my-8 ">
+          {restaurants.map((restaurant) => {
+            return (
+              <RestaurantCard
+                key={restaurant?.info?.id}
+                {...restaurant?.info}
+              />
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
