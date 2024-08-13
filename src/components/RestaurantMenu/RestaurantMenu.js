@@ -37,7 +37,11 @@ const RestaurantMenu = () => {
   // }, []);
   console.log(menu);
   console.log(recommended);
-  return <RestaurantMenuCard />;
+  return (
+    <div>
+      {recommended && <RestaurantMenuCard {...recommended[0]?.card?.info} />}
+    </div>
+  );
 };
 
 export default RestaurantMenu;
