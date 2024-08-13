@@ -5,7 +5,7 @@ const useRestaurantMenu = (id) => {
 
   useEffect(() => {
     getMenu();
-  }, []);
+  }, [id]);
 
   async function getMenu() {
     const data = await fetch(
@@ -17,6 +17,9 @@ const useRestaurantMenu = (id) => {
     console.log(json);
     setMenu(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
   }
+  console.log(menu);
+
   return menu;
 };
+
 export default useRestaurantMenu;
