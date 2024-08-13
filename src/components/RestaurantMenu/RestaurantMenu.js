@@ -8,6 +8,7 @@ const RestaurantMenu = () => {
   const { id } = useParams();
 
   const [menu, setMenu] = useState([]);
+  const [title, setTitle] = useState();
   const [recommended, setRecommended] = useState([]);
 
   useEffect(() => {
@@ -23,23 +24,37 @@ const RestaurantMenu = () => {
     const json = await data.json();
     console.log(json);
     setMenu(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-    setRecommended(
+    json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+      ?.card?.itemCards
+      ? setRecommended(
+          json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]
+            ?.card?.card?.itemCards
+        )
+      : setRecommended(
+          json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]
+            ?.card?.card?.categories[0].itemCards
+        );
+    setTitle(
       json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-        ?.card?.itemCards
+        ?.card?.title
     );
   }
-  // const menu = useRestaurantMenu(id);
-
-  // const [restMenu, setRestMenu] = useState([]);
-
-  // useEffect(() => {
-  //   setRestMenu(menu[2]?.card?.card?.itemCards[0]?.card?.info);
-  // }, []);
   console.log(menu);
   console.log(recommended);
   return (
-    <div>
-      {recommended && <RestaurantMenuCard {...recommended[0]?.card?.info} />}
+    <div className="mx-80 my-10">
+      <button className="mb-6">
+        <h3 className="font-bold text-lg">{title}</h3>
+      </button>
+      {recommended &&
+        recommended.map((restaurant) => {
+          return (
+            <RestaurantMenuCard
+              key={restaurant?.card?.info?.id}
+              {...restaurant?.card?.info}
+            />
+          );
+        })}
     </div>
   );
 };

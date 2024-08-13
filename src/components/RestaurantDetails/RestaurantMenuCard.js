@@ -6,25 +6,23 @@ const RestaurantMenuCard = ({
   name,
   ratings,
   defaultPrice,
+  price,
 }) => {
   return (
     <div>
-      <div className="mx-80 my-10">
-        <button className="mb-6">
-          <h3 className="font-bold text-lg">Recommended</h3>
-        </button>
+      <div className="">
         <div className="w-[768px] h-44">
           <div className="flex justify-between">
             <div className="text-sm py-1 w-[552px]">
               <div className="text-[18px] mt-2 font-bold">{name}</div>
               <div className="mt-1 text-base font-semibold">
-                ₹{defaultPrice / 100}
+                ₹{defaultPrice / 100 ? defaultPrice / 100 : price / 100}
               </div>
               <div className="mt-3 text-sm font-semibold text-green-900">
                 ⭐️ {ratings?.aggregatedRating?.rating}
               </div>
               <div className="text-sm mt-3">
-                {description.length > 130
+                {description && description.length > 130
                   ? description.substr(0, 129) + "... more"
                   : description}
               </div>
