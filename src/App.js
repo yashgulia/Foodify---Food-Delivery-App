@@ -9,6 +9,8 @@ import Instamart from "./components/Instamart";
 import Cart from "./components/Cart";
 import Search from "./components/Search";
 import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu";
+import { Provider } from "react-redux";
+import store from "./utils/Redux/store";
 
 const appRouter = createBrowserRouter([
   {
@@ -61,7 +63,9 @@ function AppLayout() {
 function App() {
   return (
     <>
-      <RouterProvider router={appRouter} />
+      <Provider store={store}>
+        <RouterProvider router={appRouter} />
+      </Provider>
     </>
   );
 }
