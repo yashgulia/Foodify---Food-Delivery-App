@@ -14,10 +14,8 @@ const useRestaurantMenu = (id) => {
         "&catalog_qa=undefined&submitAction=ENTER"
     );
     const json = await data.json();
-    console.log(json);
     setMenu(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
   }
-  console.log(menu);
 
   return menu;
 };
