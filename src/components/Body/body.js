@@ -1,5 +1,6 @@
 import RestaurantCard from "../RestaurantDetails/RestaurantCard";
 import useRestaurant from "../../utils/Hooks/useRestaurant";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const restaurants = useRestaurant();
@@ -44,10 +45,12 @@ const Body = () => {
         <div className="grid grid-cols-4 gap-8 my-8 ">
           {restaurants.map((restaurant) => {
             return (
-              <RestaurantCard
+              <Link
+                to={"/restaurant/" + restaurant?.info?.id}
                 key={restaurant?.info?.id}
-                {...restaurant?.info}
-              />
+              >
+                <RestaurantCard {...restaurant?.info} />
+              </Link>
             );
           })}
         </div>

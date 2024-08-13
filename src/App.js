@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import Instamart from "./components/Instamart";
 import Cart from "./components/Cart";
 import Search from "./components/Search";
+import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu";
 
 const appRouter = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/restaurant/:id",
+        element: <RestaurantMenu />,
       },
     ],
   },
