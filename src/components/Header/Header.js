@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import foodify from "../../img/foodify.png";
 import useOnline from "../../utils/Hooks/useOnline";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Logo = () => (
   <a href="/">
@@ -11,6 +12,8 @@ const Logo = () => (
 
 const Header = () => {
   const isOnline = useOnline();
+
+  const cartItems = useSelector((store) => store.cart.items);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -35,7 +38,7 @@ const Header = () => {
             <Link to="/search">Search</Link>
           </li>
           <li className="px-10 text-lg">
-            <Link to="/cart">Cart(0)</Link>
+            <Link to="/cart">Cart({cartItems.length})</Link>
           </li>
         </ul>
       </div>

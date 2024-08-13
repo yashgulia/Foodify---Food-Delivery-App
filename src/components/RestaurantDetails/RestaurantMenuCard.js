@@ -1,13 +1,15 @@
+import { useDispatch } from "react-redux";
 import { IMG_CDN_URL } from "../../config";
+import { addItem } from "../../utils/Redux/cartSlice";
 
-const RestaurantMenuCard = ({
-  description,
-  imageId,
-  name,
-  ratings,
-  defaultPrice,
-  price,
-}) => {
+const RestaurantMenuCard = (props) => {
+  const { description, imageId, name, ratings, defaultPrice, price } = props;
+
+  const dispatch = useDispatch();
+
+  const addFoodItem = (item) => {
+    dispatch(addItem(item));
+  };
   return (
     <div>
       <div className="">
@@ -34,7 +36,10 @@ const RestaurantMenuCard = ({
                 alt="menu"
               />
               <div className="h-11 relative left-2/4 bottom-7 z-10 -translate-x-[56px]">
-                <button className="w-28 h-10 shadow-lg rounded-lg font-extrabold text-lg text-green-600 bg-white">
+                <button
+                  onClick={() => addFoodItem(props)}
+                  className="w-28 h-10 shadow-lg rounded-lg font-extrabold text-lg text-green-600 bg-white"
+                >
                   Add
                 </button>
               </div>

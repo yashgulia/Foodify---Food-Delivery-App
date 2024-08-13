@@ -1,9 +1,13 @@
 import React from "react";
 import emptyCart from "../img/empty_cart.jpg";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import CartCard from "./RestaurantDetails/Cart/CartCard";
 
 const Cart = () => {
-  return (
+  const cartItems = useSelector((store) => store.cart.items);
+
+  return cartItems.length == 0 ? (
     <div className="flex flex-col h-screen w-screen items-center justify-center text-center">
       <div>
         <img className="w-72 h-64 object-cover" src={emptyCart} alt="Cart" />
@@ -20,6 +24,15 @@ const Cart = () => {
             SEE RESTAURANTS NEAR YOU
           </button>
         </Link>
+      </div>
+    </div>
+  ) : (
+    <div className="mx-80 my-10">
+      <h1 className="font-semibold">Cart Items - {cartItems.length}</h1>
+      <div className="">
+        {cartItems.map((item) => (
+          <CartCard {...item} key={item.id} />
+        ))}
       </div>
     </div>
   );
