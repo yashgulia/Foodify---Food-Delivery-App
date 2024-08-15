@@ -1,6 +1,15 @@
+import { useDispatch } from "react-redux";
 import { IMG_CDN_URL } from "../../../config";
+import { removeItem } from "../../../utils/Redux/cartSlice";
 
-const CartCard = ({ name, defaultPrice, imageId }) => {
+const CartCard = (props) => {
+  const { id, name, defaultPrice, imageId, price } = props;
+
+  const dispatch = useDispatch();
+
+  const deleteItem = (item) => {
+    dispatch(removeItem(item));
+  };
   return (
     <>
       <div className="flex justify-start p-2">
@@ -14,9 +23,14 @@ const CartCard = ({ name, defaultPrice, imageId }) => {
         <div className="w-96">
           <h3 className="font-bold text-lg mt-7">{name}</h3>
           <div className="flex justify-between items-center mt-4">
-            <h5>₹ {defaultPrice / 100}</h5>
+            <h5>₹ {defaultPrice / 100 ? defaultPrice / 100 : price / 100}</h5>
             <div className="font-bold border shadow-lg border-green-700 rounded-lg w-12 h-8 flex justify-between">
-              <button className="p-1 text-green-700">-</button>
+              <button
+                className="p-1 text-green-700"
+                onClick={() => deleteItem(id)}
+              >
+                -
+              </button>
               <p>{}</p>
               <button className="p-1 text-green-700">+</button>
             </div>
