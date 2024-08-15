@@ -1,11 +1,18 @@
 import React from "react";
 import emptyCart from "../img/empty_cart.jpg";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartCard from "./RestaurantDetails/Cart/CartCard";
+import { clearCart } from "../utils/Redux/cartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
+
+  const dispatch = useDispatch();
+
+  const clearCartItem = () => {
+    dispatch(clearCart());
+  };
 
   return cartItems.length == 0 ? (
     <div className="flex flex-col h-screen w-screen items-center justify-center text-center">
@@ -28,7 +35,17 @@ const Cart = () => {
     </div>
   ) : (
     <div className="mx-80 my-10">
-      <h1 className="font-semibold">Cart Items - {cartItems.length}</h1>
+      <div className="flex justify-around">
+        <h1 className="font-semibold text-xl">
+          Cart Items - {cartItems.length}
+        </h1>
+        <button
+          className="border bg-green-600 rounded-xl p-2"
+          onClick={() => clearCartItem()}
+        >
+          Clear Cart
+        </button>
+      </div>
       <div className="">
         {cartItems.map((item) => (
           <CartCard {...item} key={item.id} />
