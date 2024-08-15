@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { IMG_CDN_URL } from "../../../config";
-import { removeItem } from "../../../utils/Redux/cartSlice";
+import { IMG_CDN_URL } from "../../config";
+import { removeItem } from "../../utils/Redux/cartSlice";
 
 const CartCard = (props) => {
   const { id, name, defaultPrice, imageId, price } = props;

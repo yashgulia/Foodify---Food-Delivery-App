@@ -24,3 +24,9 @@ Steps:
     swiggy menu api - URL: https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.65200&lng=77.16630&restaurantId=655882&catalog_qa=undefined&submitAction=ENTER
 12. Restaurant Menu
 13. Custom Hook for Restaurant Menu
+14. Empty Cart Page Layout
+15. Redux Store Setup
+16. Creating Slice for Handling Cart Items
+17. Item Addition Functionality
+18. Item Deletion Functionality
+19. Clearing Cart Functionality

@@ -1,11 +1,14 @@
 import RestaurantCard from "../RestaurantDetails/RestaurantCard";
 import useRestaurant from "../../utils/Hooks/useRestaurant";
 import { Link } from "react-router-dom";
+import Shimmer from "../Shimmer";
 
 const Body = () => {
   const restaurants = useRestaurant();
 
-  return (
+  return restaurants?.length === 0 ? (
+    <Shimmer />
+  ) : (
     <>
       <div className="mx-44">
         <div>

@@ -1,9 +1,9 @@
 import React from "react";
-import emptyCart from "../img/empty_cart.jpg";
+import emptyCart from "../../img/empty_cart.jpg";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import CartCard from "./RestaurantDetails/Cart/CartCard";
-import { clearCart } from "../utils/Redux/cartSlice";
+import CartCard from "./CartCard";
+import { clearCart } from "../../utils/Redux/cartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);

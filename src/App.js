@@ -6,7 +6,7 @@ import Error from "./components/Error Handling/Error";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Instamart from "./components/Instamart";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/Cart.js";
 import Search from "./components/Search";
 import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu";
 import { Provider } from "react-redux";
