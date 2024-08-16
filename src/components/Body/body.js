@@ -1,7 +1,7 @@
 import RestaurantCard from "../RestaurantDetails/RestaurantCard";
 import useRestaurant from "../../utils/Hooks/useRestaurant";
 import { Link } from "react-router-dom";
-import Shimmer from "../Shimmer";
+import Shimmer from "../Shimmer/Shimmer";
 import { useDispatch } from "react-redux";
 import { addRestaurant } from "../../utils/Redux/cartSlice";
 

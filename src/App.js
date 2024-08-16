@@ -3,15 +3,15 @@ import Header from "./components/Header/Header";
 import Body from "./components/Body/Body";
 import Footer from "./components/Footer/Footer";
 import Error from "./components/Error Handling/Error";
-import About from "./components/About";
-import Contact from "./components/Contact";
+import About from "./components/About/About.js";
+import Contact from "./components/Contact/Contact.js";
 import Cart from "./components/Cart/Cart.js";
-import Search from "./components/Search";
+import Search from "./components/Search/Search.js";
 import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu";
 import { Provider } from "react-redux";
 import store from "./utils/Redux/store";
 import { Suspense, lazy } from "react";
-import Shimmer from "./components/Shimmer.js";
+import Shimmer from "./components/Shimmer/Shimmer.js";
 
 const Instamart = lazy(() => import("./components/Instamart/Instamart.js"));
 

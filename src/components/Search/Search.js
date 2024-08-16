@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { filterData } from "../utils/helper";
+import { filterData } from "../../utils/helper";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import RestaurantCard from "./RestaurantDetails/RestaurantCard";
-import image from "../config";
+import RestaurantCard from "../RestaurantDetails/RestaurantCard";
+import image from "../../config";
 
 const Search = () => {
   const [searchInput, setSearchInput] = useState("");
