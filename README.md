@@ -30,3 +30,5 @@ Steps:
 17. Item Addition Functionality
 18. Item Deletion Functionality
 19. Clearing Cart Functionality
+
+Swiggy Instamart API - https://www.swiggy.com/api/instamart/home?clientId=INSTAMART-APP

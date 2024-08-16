@@ -5,12 +5,15 @@ import Footer from "./components/Footer/Footer";
 import Error from "./components/Error Handling/Error";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import Instamart from "./components/Instamart";
 import Cart from "./components/Cart/Cart.js";
 import Search from "./components/Search";
 import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu";
 import { Provider } from "react-redux";
 import store from "./utils/Redux/store";
+import { Suspense, lazy } from "react";
+import Shimmer from "./components/Shimmer.js";
+
+const Instamart = lazy(() => import("./components/Instamart/Instamart.js"));
 
 const appRouter = createBrowserRouter([
   {
@@ -36,7 +39,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/instamart",
-        element: <Instamart />,
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Instamart />
+          </Suspense>
+        ),
       },
       {
         path: "/cart",
