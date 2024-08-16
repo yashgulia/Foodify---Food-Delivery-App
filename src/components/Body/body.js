@@ -14,7 +14,7 @@ const Body = () => {
   }
 
   return restaurants?.length === 0 ? (
-    <Shimmer />
+    <Shimmer name={"great food"} />
   ) : (
     <>
       <div className="mx-44">

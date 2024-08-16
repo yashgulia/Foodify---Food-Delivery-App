@@ -1,8 +1,8 @@
-const Shimmer = () => {
+const Shimmer = ({ name }) => {
   return (
     <div className="mb-20">
       <div className="bg-[#020521] flex justify-center items-center tracking-widest text-white text-2xl w-screen h-80 mb-10">
-        <p className="">Looking for great food near you ...</p>
+        <p className="">Looking for {name} near you ...</p>
       </div>
       <div className="grid grid-cols-4 gap-10 mt-20 mx-48">
         {Array(8)

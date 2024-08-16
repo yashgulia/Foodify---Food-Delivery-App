@@ -40,7 +40,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/instamart",
         element: (
-          <Suspense fallback={<Shimmer />}>
+          <Suspense fallback={<Shimmer name={"Groceries"} />}>
             <Instamart />
           </Suspense>
         ),
