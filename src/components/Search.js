@@ -13,7 +13,7 @@ const Search = () => {
   return (
     <div className="h-max">
       <div className="w-[860px] mx-auto">
-        <div className="sticky pt-12 pb-2">
+        <div className="sticky bg-white top-20 pt-12 pb-2">
           <div className="h-12 border border-gray-400">
             <div className="flex pr-3 justify-between items-center">
               <div className="h-12 w-[830px] pl-4">
