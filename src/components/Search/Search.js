@@ -23,6 +23,12 @@ const Search = () => {
                   placeholder="Search for restaurants"
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      const data = filterData(searchInput, restaurant);
+                      setFilterRestaurant(data);
+                    }
+                  }}
                 />
               </div>
               <div>
