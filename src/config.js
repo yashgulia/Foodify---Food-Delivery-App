@@ -1,6 +1,12 @@
 export const IMG_CDN_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
+export const ITEMS_PER_PAGE = 8;
+
+export const FOOTER = 800;
+
+export const DELAY = 100;
+
 const img_1 = {
   name: "Biryani",
   imge: "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/rng/md/carousel/production/b4ff78ecc5b8b66f732dd06228916d65",

@@ -4,14 +4,67 @@ import { Link } from "react-router-dom";
 import Shimmer from "../Shimmer/Shimmer";
 import { useDispatch } from "react-redux";
 import { addRestaurant } from "../../utils/Redux/cartSlice";
+import { useCallback, useEffect, useState } from "react";
+import ShimmerCard from "../Shimmer/ShimmerCard";
+import { FOOTER, ITEMS_PER_PAGE, DELAY } from "../../config";
 
 const Body = () => {
   const restaurants = useRestaurant();
   const dispatch = useDispatch();
 
-  if (restaurants) {
-    dispatch(addRestaurant(restaurants));
-  }
+  const [displayedRestaurants, setDisplayedRestaurants] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [timeoutId, setTimeoutId] = useState(null);
+
+  const loadMoreRestaurants = useCallback(() => {
+    if (restaurants && restaurants.length > 0) {
+      const newItems = restaurants.slice(0, currentPage * ITEMS_PER_PAGE);
+      setDisplayedRestaurants(newItems);
+      if (newItems.length >= restaurants.length) {
+        setHasMore(false);
+      }
+    }
+  }, [restaurants, currentPage]);
+
+  const handleScroll = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    const newTimeoutId = setTimeout(() => {
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      if (scrollTop + windowHeight >= documentHeight - FOOTER && hasMore) {
+        setCurrentPage((prevPage) => prevPage + 1);
+      }
+    }, DELAY);
+
+    setTimeoutId(newTimeoutId);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [handleScroll, hasMore, timeoutId]);
+
+  useEffect(() => {
+    loadMoreRestaurants();
+  }, [loadMoreRestaurants, currentPage]);
+
+  useEffect(() => {
+    if (restaurants) {
+      dispatch(addRestaurant(restaurants));
+    }
+  }, [restaurants, dispatch]);
 
   return restaurants?.length === 0 ? (
     <Shimmer name={"great food"} />
@@ -53,7 +106,7 @@ const Body = () => {
           </div>
         </div>
         <div className="grid grid-cols-4 gap-8 my-8 ">
-          {restaurants.map((restaurant) => {
+          {displayedRestaurants.map((restaurant) => {
             return (
               <Link
                 to={"/restaurant/" + restaurant?.info?.id}
@@ -64,6 +117,7 @@ const Body = () => {
             );
           })}
         </div>
+        {hasMore && <ShimmerCard />}
       </div>
     </>
   );
