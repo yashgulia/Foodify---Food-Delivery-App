@@ -9,7 +9,9 @@ const RestaurantMenu = () => {
   const [title, setTitle] = useState();
   const [recommended, setRecommended] = useState(null);
 
-  const menu = useRestaurantMenu(id);
+  const savedLocation = JSON.parse(sessionStorage.getItem("userLocation"));
+
+  const menu = useRestaurantMenu(id, savedLocation);
 
   useEffect(() => {
     if (menu) {

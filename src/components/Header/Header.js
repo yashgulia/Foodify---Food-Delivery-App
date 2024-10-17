@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const Logo = () => (
   <a href="/">
-    <img className="h-20 p-2" alt="logo" src={foodify} />
+    <img className="h-24 p-2" alt="logo" src={foodify} />
   </a>
 );
 
@@ -18,7 +18,7 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <div className="flex justify-evenly items-center sticky top-0 z-20 bg-white shadow-lg">
+    <div className="flex justify-evenly h-28 items-center sticky top-0 z-20 bg-white shadow-lg">
       <Logo />
       <div>
         <ul className="flex">

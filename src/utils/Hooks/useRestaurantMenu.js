@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 
-const useRestaurantMenu = (id) => {
+const useRestaurantMenu = (id, savedLocation) => {
   const [menu, setMenu] = useState([]);
-
-  const savedLocation = JSON.parse(sessionStorage.getItem("userLocation"));
-  console.log(savedLocation);
 
   useEffect(() => {
     getMenu();

@@ -11,7 +11,6 @@ import useGeolocation from "../../utils/Hooks/useGeolocation";
 
 const Body = () => {
   const { location, loading } = useGeolocation();
-  console.log(location);
 
   const restaurants = useRestaurant(location);
 
