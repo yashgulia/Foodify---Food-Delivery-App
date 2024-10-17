@@ -18,7 +18,7 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <div className="flex justify-evenly items-center sticky top-0 z-10 bg-white shadow-lg">
+    <div className="flex justify-evenly items-center sticky top-0 z-20 bg-white shadow-lg">
       <Logo />
       <div>
         <ul className="flex">
