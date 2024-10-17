@@ -7,9 +7,18 @@ import { addRestaurant } from "../../utils/Redux/cartSlice";
 import { useCallback, useEffect, useState } from "react";
 import ShimmerCard from "../Shimmer/ShimmerCard";
 import { FOOTER, ITEMS_PER_PAGE, DELAY } from "../../config";
+import useGeolocation from "../../utils/Hooks/useGeolocation";
 
 const Body = () => {
-  const restaurants = useRestaurant();
+  const { location, loading } = useGeolocation();
+  console.log(location);
+
+  const restaurants = useRestaurant(location);
+
+  useEffect(() => {
+    sessionStorage.setItem("userLocation", JSON.stringify(location));
+  }, []);
+
   const dispatch = useDispatch();
 
   const [displayedRestaurants, setDisplayedRestaurants] = useState([]);
@@ -66,13 +75,17 @@ const Body = () => {
     }
   }, [restaurants, dispatch]);
 
+  if (loading) {
+    return <Shimmer name={"great food"} />; // Show loading state
+  }
+
   return restaurants?.length === 0 ? (
     <Shimmer name={"great food"} />
   ) : (
     <>
       <div className="mx-44">
         <div>
-          <h2 className="text-2xl my-4 font-bold">
+          <h2 className="text-2xl my-9 font-bold">
             Restaurants with online food delivery in Gurgaon
           </h2>
         </div>
