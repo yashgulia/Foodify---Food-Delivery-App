@@ -1,7 +1,7 @@
 import React from "react";
 
 const Instamart = () => {
-  return <div>Instamart</div>;
+  return <div className="mt-32">Instamart</div>;
 };
 
 export default Instamart;

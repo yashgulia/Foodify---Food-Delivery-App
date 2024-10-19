@@ -14,6 +14,8 @@ const Body = () => {
 
   const restaurants = useRestaurant(location);
 
+  console.log(restaurants);
+
   useEffect(() => {
     sessionStorage.setItem("userLocation", JSON.stringify(location));
   }, []);
@@ -89,7 +91,7 @@ const Body = () => {
           </h2>
 
           <h2 className="text-2xl mt-32 hidden md:block my-9 font-bold">
-            Restaurants with online food delivery in Gurgaon
+            Restaurants with online food delivery
           </h2>
         </div>
         <div className="hidden sm:flex items-center h-11 flex-wrap my-4">

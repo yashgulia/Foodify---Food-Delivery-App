@@ -1,6 +1,6 @@
 const Shimmer = ({ name }) => {
   return (
-    <div className="mb-20">
+    <div className="mb-20 mt-28">
       <div className="bg-[#020521] flex justify-center items-center tracking-widest text-white text-2xl w-screen h-80 mb-10">
         <p className="">Looking for {name} near you ...</p>
       </div>

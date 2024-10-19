@@ -11,7 +11,7 @@ const Search = () => {
   const restaurant = useSelector((store) => store.cart.restaurants);
 
   return (
-    <div className="h-max">
+    <div className="h-max mt-32">
       <div className="w-[860px] mx-auto">
         <div className="sticky bg-white top-20 pt-12 pb-2">
           <div className="h-12 border border-gray-400">
