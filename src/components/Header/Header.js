@@ -25,7 +25,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-between lg:justify-evenly h-28 items-center fixed left-0 right-0 top-0 z-20 bg-white shadow-lg">
+    <div className="flex justify-between lg:justify-evenly h-28 w-screen items-center fixed left-0 right-0 top-0 z-20 bg-white shadow-lg">
       <div>
         <Logo />
       </div>

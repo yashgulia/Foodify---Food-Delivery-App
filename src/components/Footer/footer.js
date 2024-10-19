@@ -4,25 +4,29 @@ import AppStore from "../../img/app_store.jpg";
 
 const Footer = () => {
   return (
-    <>
-      <div className="flex justify-evenly items-center h-28 mt-9 bg-[#f0f0f5]">
-        <div className="text-3xl w-[450px] font-bold">
+    <div className="w-screen">
+      <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-28 mt-9 bg-[#f0f0f5]">
+        <div className="md:text-3xl sm:w-[450px] font-bold p-1">
           For better experience, download the Foodify app now
         </div>
         <div className="flex">
           <a href="/">
-            <img className="w-52 h-16 mx-3" src={PlayStore} alt="play store" />
+            <img
+              className="w-40 lg:w-52 h-12 lg:h-16 mx-3"
+              src={PlayStore}
+              alt="play store"
+            />
           </a>
           <a href="/">
             <img
-              className="w-48 h-20==16 mx-3"
+              className="w-36 lg:w-48 h-12 lg:h-16 mx-3"
               src={AppStore}
               alt="app store"
             />
           </a>
         </div>
       </div>
-      <div className="flex justify-around p-10 pb-24 bg-[#02060C]">
+      <div className="flex justify-around sm:p-10 pb-24 bg-[#02060C]">
         <div>
           <h1 className="text-white p-2 text-xl">Foodify</h1>
           <h3 className="text-gray-400 p-2 text-md">©️ 2024</h3>
@@ -94,7 +98,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
