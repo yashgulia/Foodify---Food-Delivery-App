@@ -81,43 +81,47 @@ const Body = () => {
   return restaurants?.length === 0 ? (
     <Shimmer name={"great food"} />
   ) : (
-    <>
-      <div className="mx-44">
+    <div className="w-screen">
+      <div className="mx-4 lg:mx-28">
         <div>
-          <h2 className="text-2xl my-9 font-bold">
+          <h2 className="text-2xl mt-32 md:hidden my-9 font-bold">
+            All Restaurants Nearby
+          </h2>
+
+          <h2 className="text-2xl mt-32 hidden md:block my-9 font-bold">
             Restaurants with online food delivery in Gurgaon
           </h2>
         </div>
-        <div className="flex items-center h-11 w-[1048px]">
-          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+        <div className="hidden sm:flex items-center h-11 flex-wrap my-4">
+          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Filter
           </div>
-          <div className="border rounded-2xl w-auto h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border rounded-2xl mb-2 w-auto h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Sort By
           </div>
-          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Fast Delivery
           </div>
-          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             New on Foodify
           </div>
-          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Ratings 4.0+
           </div>
-          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Pure Veg
           </div>
-          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Offers
           </div>
-          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Rs. 300-Rs. 600
           </div>
-          <div className="border rounded-2xl h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Less than Rs. 300
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-8 my-8 ">
+        <div className="md:grid grid-cols-4 gap-8 my-12 ">
           {displayedRestaurants.map((restaurant) => {
             return (
               <Link
@@ -131,7 +135,7 @@ const Body = () => {
         </div>
         {hasMore && <ShimmerCard />}
       </div>
-    </>
+    </div>
   );
 };
 

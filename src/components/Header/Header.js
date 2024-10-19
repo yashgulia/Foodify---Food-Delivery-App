@@ -39,7 +39,7 @@ const Header = () => {
         {/* Menu */}
         {isOpen && (
           <ul className="absolute top-12 right-0 bg-white shadow-lg border border-gray-200 rounded-lg cursor-pointer">
-            <li className="border-b last:border-b-0  hover:bg-green-800">
+            <li className="border-b last:border-b-0">
               <Link
                 to="/"
                 className="block px-10 py-4 text-lg text-black hover:bg-gray-100 transition-colors duration-200"
