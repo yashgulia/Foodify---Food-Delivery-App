@@ -1,6 +1,6 @@
 const ShimmerCard = () => {
   return (
-    <div className="grid grid-cols-4 gap-10">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
       {Array(4)
         .fill("")
         .map((e, index) => (
