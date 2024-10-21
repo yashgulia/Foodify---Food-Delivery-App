@@ -26,7 +26,7 @@ const RestaurantMenu = () => {
   return !recommended ? (
     <Shimmer name={"great food"} />
   ) : (
-    <div className="w-screen mx-auto flex flex-col items-center mt-32 my-10">
+    <div className="w-screen mx-auto flex flex-col items-center mt-32 py-10 ">
       <button className="mb-6">
         <h3 className="font-bold text-lg">{title}</h3>
       </button>
