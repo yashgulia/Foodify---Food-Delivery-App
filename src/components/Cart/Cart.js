@@ -15,7 +15,7 @@ const Cart = () => {
   };
 
   return cartItems.length == 0 ? (
-    <div className="flex flex-col h-screen w-screen items-center justify-center text-center">
+    <div className="flex flex-col mt-20 h-screen w-screen items-center justify-center text-center">
       <div>
         <img className="w-72 h-64 object-cover" src={emptyCart} alt="Cart" />
       </div>
@@ -34,7 +34,7 @@ const Cart = () => {
       </div>
     </div>
   ) : (
-    <div className="mx-80 my-10">
+    <div className="mx-80 mt-32 my-10">
       <div className="flex justify-around">
         <h1 className="font-semibold text-xl">
           Cart Items - {cartItems.length}

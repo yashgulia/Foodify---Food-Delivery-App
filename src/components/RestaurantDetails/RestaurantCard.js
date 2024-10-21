@@ -16,7 +16,7 @@ const RestaurantCard = ({
           alt={name}
         />
       </div>
-      <div className="md:ml-3 grid-rows-5">
+      <div className="md:ml-3 grid-rows-5 md:text-center">
         <h3 className="font-bold text-base md:text-lg mb-1 md:mb-0">
           {name.length > 20 ? name.substr(0, 20) + "..." : name}
         </h3>

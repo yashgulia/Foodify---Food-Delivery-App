@@ -12,13 +12,13 @@ const Search = () => {
 
   return (
     <div className="h-max mt-32">
-      <div className="w-[860px] mx-auto">
+      <div className="md:w-[766px] mx-auto">
         <div className="sticky bg-white top-20 pt-12 pb-2">
-          <div className="h-12 border border-gray-400">
+          <div className="h-12 mx-2 border border-gray-400">
             <div className="flex pr-3 justify-between items-center">
-              <div className="h-12 w-[830px] pl-4">
+              <div className="h-12 pl-4">
                 <input
-                  className="h-11 w-[790px] focus:outline-none"
+                  className="h-11 max-w-80 md:w-[700px] focus:outline-none"
                   type="text"
                   placeholder="Search for restaurants"
                   value={searchInput}
@@ -47,8 +47,8 @@ const Search = () => {
         </div>
 
         {filterRestaurant ? (
-          <div className="mt-24 pl-24 h-max">
-            <div className="grid grid-cols-2 gap-8 my-8 overflow-auto">
+          <div className="mt-24 h-max">
+            <div className="grid grid-flow-row grid-cols-1 md:grid-flow-col md:grid-cols-2 gap-8 my-8 overflow-auto">
               {filterRestaurant.map((rest) => (
                 <Link to={`/restaurant/${rest?.info?.id}`} key={rest?.info?.id}>
                   <RestaurantCard {...rest?.info} />
@@ -57,7 +57,7 @@ const Search = () => {
             </div>
           </div>
         ) : (
-          <div className="mt-32 h-[400px]">
+          <div className="mt-32 max-h-96 md:h-[400px]">
             <div className="w-full h-12">
               <h2 className="pt-4 font-extrabold text-xl pl-3">
                 Popular Cuisines
