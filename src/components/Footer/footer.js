@@ -5,7 +5,7 @@ import AppStore from "../../img/app_store.jpg";
 const Footer = () => {
   return (
     <div className="w-screen">
-      <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-28 mt-9 bg-[#f0f0f5]">
+      <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-28 bg-[#f0f0f5]">
         <div className="md:text-3xl sm:w-[450px] font-bold p-1">
           For better experience, download the Foodify app now
         </div>

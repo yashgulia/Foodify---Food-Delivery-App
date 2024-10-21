@@ -31,12 +31,12 @@ const Header = () => {
 
   return (
     <div className="flex justify-between lg:justify-evenly h-28 w-screen items-center fixed left-0 right-0 top-0 z-20 bg-white shadow-lg">
-      <div className="z-30">
+      <div>
         <Logo />
       </div>
 
       {/* Mobile View */}
-      <div className="relative p-6 z-30 lg:hidden">
+      <div className="relative p-6  lg:hidden">
         <div className="flex items-center cursor-pointer" onClick={toggleMenu}>
           {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </div>
@@ -103,7 +103,7 @@ const Header = () => {
       </div>
 
       {/* Desktop View */}
-      <div className="hidden z-30 lg:flex">
+      <div className="hidden lg:flex">
         <ul className="hidden lg:flex ">
           <li className="px-10 text-lg">
             <Link to="/">Home</Link>

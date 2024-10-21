@@ -83,7 +83,7 @@ const Body = () => {
   return restaurants?.length === 0 ? (
     <Shimmer name={"great food"} />
   ) : (
-    <div className="w-screen">
+    <div className="w-screen bg-gradient-to-b from-white via-emerald-700 to-emerald-900">
       <div className="mx-4 lg:mx-28">
         <div>
           <h2 className="text-2xl mt-32 md:hidden my-9 font-bold">
@@ -95,35 +95,35 @@ const Body = () => {
           </h2>
         </div>
         <div className="hidden sm:flex items-center h-11 flex-wrap my-4">
-          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border border-black rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Filter
           </div>
-          <div className="border rounded-2xl mb-2 w-auto h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border border-black rounded-2xl mb-2 w-auto h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Sort By
           </div>
-          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border border-black rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Fast Delivery
           </div>
-          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border border-black rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             New on Foodify
           </div>
-          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border border-black rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Ratings 4.0+
           </div>
-          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border border-black rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Pure Veg
           </div>
-          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border border-black rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Offers
           </div>
-          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border border-black rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Rs. 300-Rs. 600
           </div>
-          <div className="border rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
+          <div className="border border-black rounded-2xl mb-2 h-9 mr-2 px-3 py-2 text-sm text-nowrap">
             Less than Rs. 300
           </div>
         </div>
-        <div className="md:grid grid-cols-4 gap-8 my-12 ">
+        <div className="md:grid grid-cols-4 gap-8 py-12 ">
           {displayedRestaurants.map((restaurant) => {
             return (
               <Link

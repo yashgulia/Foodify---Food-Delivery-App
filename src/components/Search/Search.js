@@ -13,7 +13,7 @@ const Search = () => {
   return (
     <div className="h-max mt-32">
       <div className="md:w-[766px] mx-auto">
-        <div className="sticky bg-white top-20 pt-12 pb-2">
+        <div className="sticky bg-white top-20 z-10 pt-12">
           <div className="h-12 mx-2 border border-gray-400">
             <div className="flex pr-3 justify-between items-center">
               <div className="h-12 pl-4">
@@ -48,7 +48,7 @@ const Search = () => {
 
         {filterRestaurant ? (
           <div className="mt-24 h-max">
-            <div className="grid grid-flow-row grid-cols-1 md:grid-flow-col md:grid-cols-2 gap-8 my-8 overflow-auto">
+            <div className="grid grid-flow-row grid-cols-1 md:grid-cols-2 gap-8 py-8">
               {filterRestaurant.map((rest) => (
                 <Link to={`/restaurant/${rest?.info?.id}`} key={rest?.info?.id}>
                   <RestaurantCard {...rest?.info} />

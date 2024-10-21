@@ -11,7 +11,7 @@ const RestaurantCard = ({
     <div className="grid grid-cols-2 md:grid-cols-1  gap-3 mb-12 md:mb-0">
       <div className="grid-rows-7 justify-self-center">
         <img
-          className="w-44 h-36 md:w-60 md:h-40 object-cover rounded-2xl shadow-lg brightness-90 hover:brightness-110"
+          className="w-44 h-36 transition hover:scale-110 hover:shadow-black duration-200 md:w-60 md:h-40 object-cover rounded-2xl shadow-lg brightness-90 hover:brightness-110"
           src={IMG_CDN_URL + cloudinaryImageId}
           alt={name}
         />
