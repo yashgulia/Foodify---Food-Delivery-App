@@ -34,6 +34,7 @@ Technologies Used :
     React Icons
     Swiggy API
     Geolocation API
+    Session Storage
 
 App Structure :
 
