@@ -1,19 +1,19 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import Header from "./components/Header/Header";
-import Body from "./components/Body/Body";
-import Footer from "./components/Footer/Footer";
-import Error from "./components/Error Handling/Error";
-import About from "./components/About/About.js";
-import Contact from "./components/Contact/Contact.js";
-import Cart from "./components/Cart/Cart.js";
-import Search from "./components/Search/Search.js";
-import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu";
+import Header from "./components/common/Navbar/Header";
+import Body from "./pages/body/Body.js";
+import Footer from "./components/common/Footer/Footer";
+import Error from "./components/common/ErrorHandling/Error";
+import About from "./pages/about/About.js";
+import Contact from "./pages/contact/Contact.js";
+import Cart from "./pages/cart/Cart.js";
+import Search from "./pages/search/Search.js";
+import RestaurantMenu from "./pages/restaurantMenu/RestaurantMenu";
 import { Provider } from "react-redux";
-import store from "./utils/Redux/store";
+import store from "./Redux/store";
 import { Suspense, lazy } from "react";
-import Shimmer from "./components/Shimmer/Shimmer.js";
+import Shimmer from "./components/common/Shimmer/Shimmer";
 
-const Instamart = lazy(() => import("./components/Instamart/Instamart.js"));
+const Instamart = lazy(() => import("./pages/instamart/Instamart.js"));
 
 const appRouter = createBrowserRouter([
   {
