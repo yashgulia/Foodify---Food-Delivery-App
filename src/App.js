@@ -9,9 +9,12 @@ import Cart from "./pages/cart/Cart.js";
 import Search from "./pages/search/Search.js";
 import RestaurantMenu from "./pages/restaurantMenu/RestaurantMenu";
 import { Provider } from "react-redux";
-import store from "./Redux/store";
+import { store, persistor } from "./Redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 import { Suspense, lazy } from "react";
 import Shimmer from "./components/common/Shimmer/Shimmer";
+
+import AuthModal from "./components/core/Auth/AuthModal.js";
 
 const Instamart = lazy(() => import("./pages/instamart/Instamart.js"));
 
@@ -24,6 +27,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Body />,
+      },
+      {
+        path: "/login",
+        element: <AuthModal />,
       },
       {
         path: "/about",
@@ -71,7 +78,9 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <RouterProvider router={appRouter} />
+        <PersistGate loading={null} persistor={persistor}>
+          <RouterProvider router={appRouter} />
+        </PersistGate>
       </Provider>
     </>
   );
