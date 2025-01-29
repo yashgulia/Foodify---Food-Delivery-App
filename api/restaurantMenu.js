@@ -1,5 +1,3 @@
-import fetch from "node-fetch";
-
 export default async function handler(req, res) {
   console.log("API Hit: /api/restaurantMenu");
   console.log("Query Params:", req.query);
@@ -14,6 +12,8 @@ export default async function handler(req, res) {
   }
 
   try {
+    const fetch = (await import("node-fetch")).default; // Dynamic import
+
     const response = await fetch(
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${latitude}&lng=${longitude}&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
     );
