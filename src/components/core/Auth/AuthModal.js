@@ -81,7 +81,7 @@ const AuthModal = ({ isOpen, onClose }) => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-emerald-500"
+            className="w-full px-4 py-2 text-white bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-emerald-500"
           />
           <input
             type="password"
@@ -90,7 +90,7 @@ const AuthModal = ({ isOpen, onClose }) => {
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-emerald-500"
+            className="w-full px-4 py-2 text-white bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-emerald-500"
           />
           <button
             type="submit"
