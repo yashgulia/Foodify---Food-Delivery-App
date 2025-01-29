@@ -1,24 +1,33 @@
-// api/restaurant.js
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 export default async function handler(req, res) {
+  console.log("API Hit: /api/restaurant");
+  console.log("Query Params:", req.query);
+
   const { latitude, longitude } = req.query;
 
-  // Check if both latitude and longitude are provided
   if (!latitude || !longitude) {
+    console.error("Missing Latitude or Longitude");
     return res
       .status(400)
-      .json({ error: "Latitude and longitude are required" });
+      .json({ error: "Latitude and Longitude are required" });
   }
 
   try {
     const response = await fetch(
       `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
     );
+
+    if (!response.ok) {
+      throw new Error(`Swiggy API Error: ${response.status}`);
+    }
+
     const data = await response.json();
-    res.setHeader("Access-Control-Allow-Origin", "*"); // Set CORS header
-    res.status(200).json(data);
+    console.log("API Response Received", data);
+
+    return res.status(200).json(data);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch restaurant data" });
+    console.error("Error fetching restaurant data:", error.message);
+    return res.status(500).json({ error: "Failed to fetch restaurant data" });
   }
 }
