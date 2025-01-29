@@ -5,7 +5,6 @@ const useRestaurantMenu = (id, savedLocation) => {
 
   useEffect(() => {
     if (id && savedLocation?.latitude && savedLocation?.longitude) {
-      console.log("Valid parameters. Calling getMenu...");
       getMenu();
     } else {
       console.error("Missing Restaurant ID or Location Data");
@@ -14,8 +13,6 @@ const useRestaurantMenu = (id, savedLocation) => {
 
   async function getMenu() {
     try {
-      console.log("Making fetch request to menu API...");
-
       const response = await fetch(
         `/api/restaurantMenu?id=${id}&latitude=${savedLocation.latitude}&longitude=${savedLocation.longitude}`
       );
@@ -25,7 +22,6 @@ const useRestaurantMenu = (id, savedLocation) => {
       }
 
       const json = await response.json();
-      console.log("Received API response:", json);
 
       setMenu(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
     } catch (error) {

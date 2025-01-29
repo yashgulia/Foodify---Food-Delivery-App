@@ -4,18 +4,11 @@ const useRestaurant = (location) => {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
-    if (location?.latitude && location?.longitude) {
-      console.log("Latitude and longitude are valid. Calling getRestaurant...");
-      getRestaurant();
-    } else {
-      console.error("Latitude or longitude is missing");
-    }
-  }, [location]);
+    getRestaurant();
+  }, []);
 
   async function getRestaurant() {
     try {
-      console.log("Making fetch request...");
-
       const response = await fetch(
         `/api/restaurant?latitude=${location.latitude}&longitude=${location.longitude}`
       );
@@ -25,7 +18,6 @@ const useRestaurant = (location) => {
       }
 
       const json = await response.json();
-      console.log("Received API response:", json);
 
       setRestaurants(
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
