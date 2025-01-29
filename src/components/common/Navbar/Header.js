@@ -1,14 +1,17 @@
-import { Link } from "react-router-dom";
-import foodify from "../../../img/foodify.png";
-import useOnline from "../../../Hooks/useOnline";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../Redux/authSlice";
+import AuthModal from "../../core/Auth/AuthModal";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../utils/firebase";
+import { Link } from "react-router-dom";
+import { FaBars, FaTimes, FaShoppingCart, FaSearch } from "react-icons/fa";
+import foodify from "../../../img/foodify.png";
 
 const Logo = () => (
   <a href="/">
     <img
-      className="h-28 p-2 brightness-125 hover:scale-110 transition-all duration-300"
+      className="h-24 p-2 brightness-125 hover:scale-110 transition-all duration-300"
       alt="logo"
       src={foodify}
     />
@@ -16,163 +19,167 @@ const Logo = () => (
 );
 
 const Header = () => {
-  const isOnline = useOnline();
-
-  const cartItems = useSelector((store) => store.cart.items);
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const [isOpen, setIsOpen] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((store) => store.auth.isAuthenticated);
+  const cartItems = useSelector((store) => store.cart.items);
+  const cartCount = Object.keys(cartItems).length;
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      dispatch(logout());
+      localStorage.removeItem("token");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
 
-  const totalItemsInCart = Object.values(cartItems).reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <div className="flex justify-between lg:justify-evenly h-28 w-screen items-center fixed left-0 right-0 top-0 z-20 bg-richblack-900 text-white border-b-[1px] border-b-richblack-700 shadow-[-10px_5px_10px_-2px] shadow-caribbeangreen-300">
-      <div>
-        <Logo />
-      </div>
+    <header className="flex justify-between items-center px-6 py-1 fixed top-0 w-full z-50 bg-gradient-to-r from-richblack-900 to-emerald-950 text-white shadow-lg border-b border-emerald-700">
+      <Logo />
 
-      {/* Mobile View */}
-      <div className="relative p-6 lg:hidden">
-        {/* Hamburger Button */}
-        <div
-          className="flex items-center cursor-pointer text-emerald-600 hover:text-emerald-500 transition-colors duration-300"
-          onClick={toggleMenu}
-        >
-          {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </div>
+      {/* Desktop Navigation */}
+      <nav className="hidden lg:flex items-center gap-8">
+        <Link to="/" className="hover:text-emerald-400 transition">
+          Home
+        </Link>
+        <Link to="/about" className="hover:text-emerald-400 transition">
+          About
+        </Link>
+        <Link to="/contact" className="hover:text-emerald-400 transition">
+          Contact
+        </Link>
+        <Link to="/instamart" className="hover:text-emerald-400 transition">
+          Instamart
+        </Link>
+        <Link to="/search" className="hover:text-emerald-400 transition">
+          <FaSearch />
+        </Link>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <ul className="absolute top-14 right-0 w-64 bg-richblack-900 border border-emerald-700/30 rounded-lg shadow-lg shadow-emerald-700/20 py-2 z-50">
-            <li className="border-b border-emerald-700/30 last:border-b-0">
+        <Link to="/cart" className="relative">
+          <FaShoppingCart className="text-2xl hover:text-emerald-400 transition" />
+          {cartCount > 0 && (
+            <span className="absolute -top-2 -right-3 bg-green-800 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+              {cartCount}
+            </span>
+          )}
+        </Link>
+
+        {isAuthenticated ? (
+          <button
+            onClick={handleLogout}
+            className="px-6 py-2 bg-red-500 hover:bg-red-600 rounded-lg transition"
+          >
+            Logout
+          </button>
+        ) : (
+          <button
+            onClick={() => setShowAuthModal(true)}
+            className="px-6 py-2 bg-emerald-600 hover:bg-emerald-700 rounded-lg transition"
+          >
+            Login
+          </button>
+        )}
+      </nav>
+
+      {/* Mobile Menu */}
+      <button className="lg:hidden text-xl" onClick={toggleMenu}>
+        {isOpen ? <FaTimes /> : <FaBars />}
+      </button>
+      {isOpen && (
+        <div className="absolute top-20 left-0 w-full bg-gradient-to-r from-richblack-900 to-emerald-950 text-white border-b border-emerald-700 shadow-md lg:hidden">
+          <ul className="flex flex-col items-center py-4 space-y-4">
+            <li>
               <Link
                 to="/"
-                className="block px-6 py-3 text-emerald-600 hover:bg-emerald-600/10 transition-colors duration-200"
+                className="block hover:text-emerald-400 transition"
                 onClick={toggleMenu}
               >
                 Home
               </Link>
             </li>
-            <li className="border-b border-emerald-700/30 last:border-b-0">
+            <li>
               <Link
                 to="/about"
-                className="block px-6 py-3 text-emerald-600 hover:bg-emerald-600/10 transition-colors duration-200"
+                className="hover:text-emerald-400"
                 onClick={toggleMenu}
               >
                 About
               </Link>
             </li>
-            <li className="border-b border-emerald-700/30 last:border-b-0">
+            <li>
               <Link
                 to="/contact"
-                className="block px-6 py-3 text-emerald-600 hover:bg-emerald-600/10 transition-colors duration-200"
+                className="hover:text-emerald-400"
                 onClick={toggleMenu}
               >
                 Contact
               </Link>
             </li>
-            <li className="border-b border-emerald-700/30 last:border-b-0">
+            <li>
               <Link
                 to="/instamart"
-                className="block px-6 py-3 text-emerald-600 hover:bg-emerald-600/10 transition-colors duration-200"
+                className="hover:text-emerald-400"
                 onClick={toggleMenu}
               >
                 Instamart
               </Link>
             </li>
-            <li className="border-b border-emerald-700/30 last:border-b-0">
+            <li>
               <Link
                 to="/cart"
-                className="block px-6 py-3 text-emerald-600 hover:bg-emerald-600/10 transition-colors duration-200"
+                className="relative flex items-center"
                 onClick={toggleMenu}
               >
-                Cart({totalItemsInCart})
+                <FaShoppingCart className="text-xl hover:text-emerald-400" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-3 ml-2 bg-green-800 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                    {cartCount}
+                  </span>
+                )}
               </Link>
             </li>
             <li>
-              <button
-                onClick={() => {
-                  setIsLoggedIn(!isLoggedIn);
-                  toggleMenu();
-                }}
-                className="w-full text-left px-6 py-3 text-emerald-600 hover:bg-emerald-600/10 transition-colors duration-200"
-              >
-                {isLoggedIn ? "Sign Out" : "Sign In"}
-              </button>
+              {isAuthenticated ? (
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    toggleMenu();
+                  }}
+                  className="w-full px-6 py-1 text-red-500 hover:bg-red-500/10 transition rounded-lg"
+                >
+                  Logout
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    setShowAuthModal(true);
+                    toggleMenu();
+                  }}
+                  className="w-full px-6 py-3 text-emerald-500 hover:bg-emerald-500/10 transition rounded-lg"
+                >
+                  Login
+                </button>
+              )}
             </li>
           </ul>
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* Desktop View */}
-      <div className="hidden lg:flex">
-        <ul className="hidden lg:flex ">
-          <li className="px-10 text-xl relative group text-emerald-600 hover:scale-110 transition-all duration-300">
-            <Link to="/" className="block pb-2">
-              Home
-            </Link>
-            <span className="absolute left-4 bottom-0 w-0 h-0.5 bg-emerald-600 group-hover:w-3/4 transition-all duration-300"></span>{" "}
-          </li>
-
-          <li className="px-10 text-xl relative group text-emerald-600 hover:scale-110 transition-all duration-300">
-            <Link to="/about" className="block pb-2">
-              About
-            </Link>
-            <span className="absolute left-4 bottom-0 w-0 h-0.5 bg-emerald-600 group-hover:w-3/4 transition-all duration-300"></span>{" "}
-          </li>
-
-          <li className="px-10 text-xl relative group text-emerald-600 hover:scale-110 transition-all duration-300">
-            <Link to="/contact" className="block pb-2">
-              Contact
-            </Link>
-            <span className="absolute left-4 bottom-0 w-0 h-0.5 bg-emerald-600 group-hover:w-3/4 transition-all duration-300"></span>{" "}
-          </li>
-
-          <li className="px-10 text-xl relative group text-emerald-600 hover:scale-110 transition-all duration-300">
-            <Link to="/instamart" className="block pb-2">
-              Instamart
-            </Link>
-            <span className="absolute left-4 bottom-0 w-0 h-0.5 bg-emerald-600 group-hover:w-3/4 transition-all duration-300"></span>{" "}
-          </li>
-
-          <li className="px-10 text-xl relative group text-emerald-600 hover:scale-110 transition-all duration-300">
-            <Link to="/search" className="block pb-2">
-              Search
-            </Link>
-            <span className="absolute left-4 bottom-0 w-0 h-0.5 bg-emerald-600 group-hover:w-3/4 transition-all duration-300"></span>{" "}
-          </li>
-          <li className="px-10 text-xl relative group text-emerald-600 hover:scale-110 transition-all duration-300">
-            <Link to="/cart" className="block pb-2">
-              Cart({totalItemsInCart})
-            </Link>
-            <span className="absolute left-4 bottom-0 w-0 h-0.5 bg-emerald-600 group-hover:w-3/4 transition-all duration-300"></span>{" "}
-          </li>
-        </ul>
-      </div>
-      <div className="hidden lg:flex">
-        {isLoggedIn ? (
-          <button
-            onClick={() => setIsLoggedIn(false)}
-            className="px-10 text-lg"
-          >
-            Sign Out
-          </button>
-        ) : (
-          <button onClick={() => setIsLoggedIn(true)} className="px-10 text-lg">
-            Sign In
-          </button>
-        )}
-        <h4 className="px-4">{isOnline ? "🟢" : "🔴"}</h4>
-      </div>
-    </div>
+      {/* Auth Modal */}
+      {showAuthModal && (
+        <AuthModal
+          isOpen={showAuthModal}
+          onClose={() => setShowAuthModal(false)}
+        />
+      )}
+    </header>
   );
 };
+
 export default Header;

@@ -19,7 +19,7 @@ const Footer = () => {
 
   return (
     <div className="w-screen border-t-[1px] border-t-richblack-700 shadow-[-10px_5px_10px_-2px] shadow-caribbeangreen-300">
-      <div className="flex justify-around sm:p-10 pb-24 bg-[#02060C]">
+      <div className="flex justify-around sm:p-10 pb-24 bg-[#000814]">
         {/* Brand Section */}
         <div>
           <h1 className="text-white p-2 text-xl">Foodify</h1>
