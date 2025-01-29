@@ -4,8 +4,10 @@ const useRestaurant = (location) => {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
-    getRestaurant();
-  }, []);
+    if (location.latitude && location.longitude) {
+      getRestaurant();
+    }
+  }, [location]);
 
   async function getRestaurant() {
     try {
