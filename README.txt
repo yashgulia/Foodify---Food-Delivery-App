@@ -1,123 +1,174 @@
-Food Delivery App
+Foodify - Food Delivery App
+
+Live Link : https://foodify-yash-gulia.vercel.app/
 
 Overview :
 
-    This React-based food delivery application allows users to explore and order from various restaurants based on their geolocation. The app integrates the Swiggy API to fetch restaurant details and menus, implements lazy loading for Instamart data, and uses React Router for seamless navigation. A shimmer effect enhances the user experience during data fetching, and React Icons are utilized for a responsive navigation menu featuring a hamburger and cross icon for toggling the page list in mobile view. Employs Redux for state management.
+Foodify is a modern food delivery application built with React, Redux, and Firebase. It provides users with a seamless experience to browse, search, and order food from restaurants. This app integrates with Swiggy APIs and features authentication, state management, and a smooth UI.
 
-Key Features :
 
-    Geolocation Integration: Automatically fetches the user's location for relevant restaurant recommendations.
-    Session Storage: Stores user coordinates for efficient restaurant data retrieval.
-    Swiggy API Integration: Uses Swiggy API for restaurant and menu data.
-    Dynamic Restaurant Cards: Displays restaurant details by mapping over the restaurant list and using props.
-    Restaurant Menu Display: Provides detailed menus for selected restaurants, including item descriptions and prices.
-    Lazy Loading: Instamart data is loaded only when the user navigates to the Instamart page.
-    Dynamic Routing: Utilizes React Router for smooth navigation between pages.
-    Shimmer Effect: Displays a shimmer loading effect while fetching data, improving user experience.
-    Responsive Navigation: Utilizes React Icons for a hamburger menu in mobile view, allowing users to toggle the page list.
-    Custom Hooks: Implements custom hooks for fetching restaurant lists, menus, user location and managing online/offline status.
-    Redux Store: Manages restaurant data and cart items, making them easily accessible across the application.
-    Error Handling: Includes basic error handling for API requests.
-    Responsive Design: Built with Tailwind CSS for a sleek, mobile-friendly interface.
-    Search Functionality: Enables users to search for restaurants by name with real-time filtering and displays popular cuisines.
+Tech Stack :
 
-Technologies Used :
+Frontend:
 
-    HTML
-    Tailwind CSS
-    JavaScript
-    React
-    Redux
-    React Router
-    React Hooks
-    Custom Hooks
-    React Icons
-    Swiggy API
-    Geolocation API
-    Session Storage
+React: Component-based UI development
+React Router: Navigation & routing
+Redux Toolkit: State management
+Redux Persist: Persistent storage for Redux state
+Tailwind CSS: Utility classes for styling
+React Icons: Icons for UI enhancement
+dotenv: Environment variables
 
-App Structure :
+Backend:
 
-    Header: Navigation component with branding, links, cart count, and user authentication.
-    Body: Main content area for restaurant listings.
-    Footer: Displays footer information.
-    Error: Handles error display for routing issues.
-    About: Provides information about the app.
-    Contact: Displays contact information.
-    Cart: Shows the user's cart, allowing item management and navigation.
-    Search: Allows users to search for restaurants by name, displaying filtered results and popular cuisines.
-    RestaurantMenu: Displays the menu for a selected restaurant, showcasing item details and pricing.
-    RestaurantMenuCard: Displays individual menu items with an option to add to the cart.
-    Instamart: Lazily loaded component for grocery shopping.
-    Shimmer: Placeholder for loading states, providing a better user experience during data fetching.
+Firebase Authentication: Email/password & Google authentication
+Vercel Serverless Functions: API handling to avoid CORS issues
 
-Redux Store :
+APIs:
 
-    Configuration :
-        The Redux store is configured using the @reduxjs/toolkit library, which simplifies the process of setting up a Redux store with better defaults.
+Swiggy API: Fetches restaurants & menus
+Geolocation API: Fetches user's location
+Razorpay API: Handles payment processing
 
-    Reducer Functions :
-        addItem: Adds a new item to the cart.
-        removeItem: Removes an item from the cart by its ID.
-        clearCart: Clears all items from the cart.
-        addRestaurant: Stores restaurant data for easy access.
 
-Custom Hooks :
+Deployment:
 
-    useGeolocation :
-        Purpose: The useGeolocation custom hook simplifies the process of obtaining the user's geographical location.
+Vercel: Hosting the React app & backend functions
 
-        Functionality:
-            Fetches the user's current latitude and longitude using the Geolocation API.
-            Stores the location in session storage for persistent access throughout the application.
-            Provides a loading state to indicate when location data is being retrieved.
-            Returns an object containing the user's location and the loading status.
 
-    useOnline :
-        Purpose: The useOnline custom hook tracks the user's online/offline status.
+Optimized for performance and user experience:
 
-        Functionality:
-            Listens for browser events to detect when the user goes online or offline.
-            Updates the internal state to reflect the user's connectivity status.
-            Cleans up event listeners on component unmount to prevent memory leaks.
-            Returns a boolean indicating whether the user is currently online.
+Lazy Loading: Instamart data is loaded only when the user navigates to the Instamart page.
+Memoization: React components are memoized to avoid unnecessary re-renders.
+State Management: Redux Toolkit is used for state management with Redux Persist for persistent storage.
+Caching: Caches restaurant data in local storage to improve performance.
+Session Storage: Stores user coordinates for efficient restaurant data retrieval.
+Shimmer Effect: Displays a shimmer loading effect while fetching data, improving user experience.
 
-    useRestaurant :
-        Purpose: The useRestaurant custom hook fetches a list of restaurants based on the user's location.
 
-        Functionality:
-            Takes the user's location (latitude and longitude) as an argument.
-            Fetches restaurant data from a specified API endpoint.
-            Updates the state with the retrieved restaurant data.
-            Returns the list of restaurants.
+Error Handling:
 
-    useRestaurantMenu :
-        Purpose: The useRestaurantMenu custom hook retrieves the menu for a specific restaurant.
+Error boundaries are implemented to catch and display errors gracefully.
 
-        Functionality:
-            Takes the restaurant ID and user's saved location as arguments.
-            Fetches menu data from a specified API endpoint based on the restaurant ID and location.
-            Updates the state with the retrieved menu data.
-            Returns the menu items for the selected restaurant.
 
-Shimmer Component :
+Scalability:
 
-    Loading Placeholder: The Shimmer component displays a loading state while restaurant data is being fetched.
-    Dynamic Messaging: Shows a message indicating that the app is looking for specific items (e.g., "Looking for great food near you ...").
-    Visual Feedback: Uses a grid layout of gray boxes to simulate loading restaurant cards, enhancing the user experience during asynchronous operations.
+Firebase can be scaled horizontally to handle increased traffic.
 
-Usage :
 
-    Allow location access when prompted to get the best restaurant options.
-    Use the navigation menu to access different sections of the app, including Home, About, Contact, Search, Instamart, and Cart.
-    Monitor your online/offline status, indicated by a visual cue in the header.
-    Manage your cart by adding items, viewing them, and clearing the cart as needed.
-    Explore restaurant menus and add items directly to your cart from the menu.
-    Utilize the search functionality to find specific restaurants by name and view popular cuisines.
+Project Structure :
 
-API Reference :
+Foodify/
+│-- src/
+│   ├── components/        # Reusable UI components
+│   ├── pages/             # Page-level components
+│   ├── hooks/             # Custom React hooks
+│   ├── redux/             # Redux store & slices
+│   ├── api/               # API-related functions
+│   ├── assets/            # Images & static assets
+│   ├── App.js             # Main App component
+│   ├── index.js           # Entry point
+│-- api/
+│   ├── restaurant.js      # Fetch restaurants via Vercel
+│   ├── restaurantMenu.js  # Fetch restaurant menus
+│-- package.json
+│-- tailwind.config.js
 
-    The app fetches data from the Swiggy API.
-    Swiggy Restaurant List API - https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65200&lng=77.16630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
-    Swiggy Menu API -  https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.65200&lng=77.16630&restaurantId=655882&catalog_qa=undefined&submitAction=ENTER
-    Swiggy Instamart API - https://www.swiggy.com/api/instamart/home?clientId=INSTAMART-APP
+
+Features :
+
+1. Restaurant Discovery
+
+Fetches nearby restaurants based on user location.
+
+Uses useRestaurant.js hook to handle API calls.
+
+
+2. Restaurant Menu Display
+
+Fetches restaurant-specific menus using useRestaurantMenu.js hook.
+
+
+3. Authentication
+
+Firebase authentication (Email/Password, Google sign-in)
+
+Redux handles auth state
+
+
+4. Cart & Checkout
+
+Add/remove items from the cart
+
+Uses Redux for state management
+
+Persistent cart with Redux Persist
+
+
+5. Dark Mode & UI Enhancements
+
+Dark theme implemented using Tailwind
+
+Smooth animations
+
+
+6. Payment Integration
+
+Payment processing with Razorpay API
+
+Payment details stored securely in Redux
+
+
+7. User Profile
+
+User authentication with Firebase
+
+User profile management
+
+
+Application Flow :
+
+User opens app → Location is fetched
+
+API request to fetch restaurants → Data stored in Redux
+
+User selects restaurant → API request for menu
+
+User adds items to cart → State updates & persists
+
+Authentication for order placement
+
+Checkout & Confirmation
+
+
+API Handling & CORS Solution :
+
+Direct Swiggy API calls were blocked due to CORS.
+
+Used Vercel Serverless Functions (/api/restaurant & /api/restaurantMenu) to proxy requests.
+
+Ensures secure & reliable API calls.
+
+
+Deployment Strategy :
+
+Frontend hosted on Vercel
+
+Serverless functions for API handling
+
+Environment variables managed in Vercel settings
+
+
+Future Enhancements :
+
+Order tracking
+
+Advanced filtering & sorting
+
+User reviews & ratings
+
+Personalized recommendations
+
+Search functionality for restaurants and items
+
+Integration with other food delivery apps
