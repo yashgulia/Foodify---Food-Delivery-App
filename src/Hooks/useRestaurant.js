@@ -10,17 +10,20 @@ const useRestaurant = (location) => {
   }, [location]);
 
   async function getRestaurant() {
-    const data = await fetch(
-      `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.latitude}&lng=${location.longitude}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
-    );
-    const json = await data.json();
-
-    setRestaurants(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants ||
-        json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants
-    );
+    try {
+      const response = await fetch(
+        `/api/restaurant?latitude=${location.latitude}&longitude=${location.longitude}`
+      );
+      const json = await response.json();
+      setRestaurants(
+        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants ||
+          json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
+            ?.restaurants
+      );
+    } catch (error) {
+      console.error("Error fetching restaurants:", error);
+    }
   }
 
   return restaurants;
